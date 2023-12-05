@@ -8,7 +8,7 @@ const JUMP_VELOCITY = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var mouse_sensitivity = 0.15 / (get_viewport().get_visible_rect().size.x/1152.0)
-@onready var cam = $Smoothing/Camera3D
+@onready var cam = $Camera3D
 
 
 func _ready():

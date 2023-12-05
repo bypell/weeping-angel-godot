@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 const SPEED = 3.5
-const VIS_RAY_TARGET_Y_OFFSET = 0.5
+const OCC_RAY_TARGET_Y_OFFSET = 0.5
 
 @export var target_player : CharacterBody3D
 
@@ -16,7 +16,7 @@ var follow_player = false
 
 
 func _ready():
-	# validate that player target export var is set
+	# validate that the player target export var is set
 	if not target_player:
 		printerr(self.name + " has no player target")
 		set_physics_process(false)
@@ -25,15 +25,14 @@ func _ready():
 	# add all RayCast3Ds to the _occlusion_check_rays array
 	for r in occlusion_check_rays_parent.get_children():
 		if r is RayCast3D:
-			# add the ennemy as an exception so that the ray does not collide with it
 			r.add_exception(self)
-			r.add_exception(target_player) # not really necessary since the rays are not scanning on the player's layer 
+			r.add_exception(target_player) 
 			_occlusion_check_rays.append(r)
 	
-	_queue_begin_following.call_deferred()
+	_start_following_player.call_deferred()
 
 
-func _queue_begin_following():
+func _start_following_player():
 	# start following player on the next physics frame (NavigationServer has to sync blablabla)
 	await get_tree().physics_frame
 	follow_player = true
@@ -69,16 +68,21 @@ func _physics_process(_delta):
 
 func _is_viewed() -> bool:
 	var viewed = visible_on_screen_notifier.is_on_screen()
+	
+	# if statue not on screen, we can already stop
+	if not viewed:
+		return viewed
+	
 	var colliding_rays = 0
 	
-	# make rays point to player and count how many are getting occluded
+	# make raycasts point to player position and count how many are colliding with an obstacle
 	for r in _occlusion_check_rays:
 		r.target_position = (target_player.global_position - r.global_position) * self.basis
-		r.target_position.y += VIS_RAY_TARGET_Y_OFFSET
+		r.target_position.y += OCC_RAY_TARGET_Y_OFFSET
 		if viewed and r.is_colliding():
 			colliding_rays += 1
 	
-	# if all rays are colliding, the statue is "hidden"
+	# if all raycasts are colliding, the statue is hidden by an obstacle
 	if colliding_rays >= _occlusion_check_rays.size():
 		viewed = false
 	

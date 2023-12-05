@@ -1,4 +1,5 @@
-res://main.tscn
-res://moving_statue/moving_statue.gd
 res://moving_statue/moving_statue.tscn
+res://moving_statue/moving_statue.gd
+res://main.tscn
 res://player/player.tscn
+res://player/player.gd
