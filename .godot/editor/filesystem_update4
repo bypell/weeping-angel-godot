@@ -1,0 +1,4 @@
+res://main.tscn
+res://moving_statue/moving_statue.gd
+res://moving_statue/moving_statue.tscn
+res://player/player.tscn

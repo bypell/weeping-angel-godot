@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://c16wibnyh70c3"]
+
+[ext_resource type="Script" path="res://moving_statue/moving_statue.gd" id="1_m8d5y"]
+[ext_resource type="PackedScene" uid="uid://c2mnx28bvs6m3" path="res://moving_statue/model/franz_von_assisi.glb" id="1_q78rh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wn6oq"]
+
+[node name="MovingStatue" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_m8d5y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_wn6oq")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_q78rh")]
+
+[node name="Sketchfab_model" parent="Sketchfab_Scene" index="0"]
+transform = Transform3D(3.97191e-09, 3.47236e-16, 0.0908667, 7.94382e-09, -0.0908667, 0, 0.0908668, 7.94382e-09, -3.97191e-09, 0, -0.762568, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06514, 0)
+aabb = AABB(-0.639119, -1.04663, -0.463718, 1.53312, 2.17139, 0.982123)
+
+[node name="OcclusionCheckRaysParent" type="Node3D" parent="."]
+
+[node name="OcclusionCheckRay1" type="RayCast3D" parent="OcclusionCheckRaysParent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.970395, 2.06081, -0.295512)
+target_position = Vector3(0, 0, -1)
+hit_from_inside = true
+
+[node name="OcclusionCheckRay2" type="RayCast3D" parent="OcclusionCheckRaysParent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.736663, 0.95016, 0.218362)
+target_position = Vector3(0, 0, -1)
+hit_from_inside = true
+
+[node name="OcclusionCheckRay3" type="RayCast3D" parent="OcclusionCheckRaysParent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.101792, 0.770299, -0.669014)
+target_position = Vector3(0, 0, -1)
+hit_from_inside = true
+
+[node name="OcclusionCheckRay4" type="RayCast3D" parent="OcclusionCheckRaysParent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.97374e-06, 0.770299, 0.733621)
+target_position = Vector3(0, 0, -1)
+hit_from_inside = true
+
+[node name="OcclusionCheckRay5" type="RayCast3D" parent="OcclusionCheckRaysParent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0372155, 2.25422, 0.148738)
+target_position = Vector3(0, 0, -1)
+hit_from_inside = true
+
+[editable path="Sketchfab_Scene"]

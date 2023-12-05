@@ -1,0 +1,12 @@
+RayCast3D
+Node3D
+VisibleOnScreenNotifier3D
+NavigationAgent3D
+CollisionShape3D
+CharacterBody3D
+NavigationRegion3D
+StaticBody3D
+ShapeCast3D
+Smoothing
+Camera3D
+MeshInstance3D
