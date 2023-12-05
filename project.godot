@@ -21,7 +21,7 @@ window/size/mode=4
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/smoothing/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 
