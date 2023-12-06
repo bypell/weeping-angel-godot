@@ -21,7 +21,6 @@ transform = Transform3D(3.97191e-09, 3.47236e-16, 0.0908667, 7.94382e-09, -0.090
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.5
-debug_enabled = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06514, 0)
