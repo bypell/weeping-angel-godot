@@ -58,7 +58,7 @@ func _physics_process(_delta):
 	if nav_agent.get_current_navigation_path():
 		var where_to_look = nav_agent.get_next_path_position()
 		where_to_look.y = self.global_position.y
-		if not where_to_look == self.global_position:
+		if not where_to_look.is_equal_approx(self.global_position):
 			look_at(where_to_look, Vector3.UP)
 	
 	# applying velocity using move direction
